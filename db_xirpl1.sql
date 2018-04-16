@@ -1,0 +1,245 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 16, 2018 at 03:05 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db_xirpl1`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bangunan`
+--
+
+CREATE TABLE `bangunan` (
+  `bangunan_id` int(11) NOT NULL,
+  `bangunan_nama` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bangunan`
+--
+
+INSERT INTO `bangunan` (`bangunan_id`, `bangunan_nama`) VALUES
+(1, 'Lab Komputer RPL 1'),
+(2, 'Lab Komputer RPL 2'),
+(3, 'Ruang Kelas X RPL 2'),
+(4, 'Ruang Kelas X RPL 1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guru`
+--
+
+CREATE TABLE `guru` (
+  `guru_id` int(11) NOT NULL,
+  `guru_nama` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `guru`
+--
+
+INSERT INTO `guru` (`guru_id`, `guru_nama`) VALUES
+(1, 'Riki Pramedistian'),
+(2, 'Tophan'),
+(3, 'Yani'),
+(4, 'Imas');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kelas`
+--
+
+CREATE TABLE `kelas` (
+  `kelas_id` int(11) NOT NULL,
+  `kelas_nama` varchar(50) DEFAULT NULL,
+  `kelas_bangunan_id` int(11) DEFAULT NULL,
+  `kelas_guru_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kelas`
+--
+
+INSERT INTO `kelas` (`kelas_id`, `kelas_nama`, `kelas_bangunan_id`, `kelas_guru_id`) VALUES
+(1, 'XI RPL 1', 1, 1),
+(2, 'XI RPL 2', 2, 2),
+(3, 'X RPL 2', 3, 3),
+(4, 'X RPL 1', 4, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `siswa`
+--
+
+CREATE TABLE `siswa` (
+  `siswa_id` int(11) NOT NULL,
+  `siswa_nis` char(8) DEFAULT NULL,
+  `siswa_nisn` char(10) DEFAULT NULL,
+  `siswa_nama` varchar(100) DEFAULT NULL,
+  `siswa_jk` char(1) DEFAULT NULL,
+  `siswa_tmp_lahir` varchar(50) DEFAULT NULL,
+  `siswa_tgl_lahir` date DEFAULT NULL,
+  `siswa_alamat` text,
+  `siswa_entri` datetime DEFAULT NULL,
+  `siswa_kelas_id` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `siswa`
+--
+
+INSERT INTO `siswa` (`siswa_id`, `siswa_nis`, `siswa_nisn`, `siswa_nama`, `siswa_jk`, `siswa_tmp_lahir`, `siswa_tgl_lahir`, `siswa_alamat`, `siswa_entri`, `siswa_kelas_id`, `deleted_at`) VALUES
+(1, '11601887', '0004790286', 'ADI BUDIMAN', 'L', 'SUBANG', '2000-10-20', 'CILEULEUY\"\"', '2018-04-13 08:40:05', 3, NULL),
+(2, '11601887', '0004790286', 'ADRIAN TRIANA FIRMANSYAH', 'L', 'SUBANG', '2000-10-20', 'CILEULEUY\"\"\"\"', '2018-04-13 09:38:52', 3, NULL),
+(3, '11601901', '0021260722', 'AHMAD IRFAN MAULANA', 'L', 'SUBANG', '2002-04-03', 'SUKAMULYA', '2018-02-22 00:00:00', 3, NULL),
+(4, '11601925', '0011355292', 'ALIN AL FAUZI', 'L', 'SUBANG', '2001-10-07', 'BANTARSARI', '2018-02-22 00:00:00', 3, NULL),
+(5, '11601946', '0012592757', 'Angga Purnamajaya', 'L', 'Subang', '2001-02-08', 'Belendung', '2018-02-22 00:00:00', 3, NULL),
+(6, '11601982', '0013614018', 'AYU PRIHATINI', 'P', 'SUBANG', '2001-02-17', 'JL.RAYA CICADAS', '2018-02-22 00:00:00', 3, NULL),
+(7, '11601994', '0014612184', 'CAHYA ANDRIAN HIDAYAT', 'L', 'SUBANG', '2001-02-06', 'SIDODADI', '2018-02-22 00:00:00', 3, NULL),
+(8, '11602015', '0012597172', 'DADI MULYADI', 'L', 'SUBANG', '2001-05-12', 'BANTARSEMA', '2018-02-22 00:00:00', 3, NULL),
+(9, '11602018', '0004897901', 'DAFIQ RHOMDHON', 'L', 'SUBANG', '2000-12-10', 'Pemuda', '2018-02-22 00:00:00', 3, NULL),
+(10, '11602044', '0006706429', 'Devi Fauziah Iftiani', 'P', 'Subang', '2000-08-13', 'CIATER NAGRAK', '2018-02-22 00:00:00', 3, NULL),
+(11, '11602102', '0010630305', 'Efan Rahmat Maulana', 'L', 'Subang', '2001-08-30', 'Blok Padasuka', '2018-02-22 00:00:00', 3, NULL),
+(12, '11602139', '0019560798', 'FAHRUL ACHMAD AL FARIZQI', 'L', 'SUBANG', '2001-03-10', 'RAYA KAMARUNG', '2018-02-22 00:00:00', 3, NULL),
+(13, '11602155', '0020090221', 'FAUZAN NUR RAMDANI', 'L', 'SUBANG', '2000-12-01', 'RAYA TUGU UTARA', '2018-02-22 00:00:00', 3, NULL),
+(14, '11602199', '0009105196', 'Gungun Gunawan', 'L', 'Subang', '2000-08-20', 'GUNUNGN CUPU', '2018-02-22 00:00:00', 3, NULL),
+(15, '11602226', '0008522913', 'IKHSAN SYAFEI FIRDAUS', 'L', 'PURWAKARTA', '2000-05-13', 'MT.HARYONO Gg.ABIMANYU', '2018-02-22 00:00:00', 3, NULL),
+(16, '11602237', '0004790901', 'INDAH NELA', 'P', 'SUBANG', '2000-07-12', 'BANJARAN HILIR', '2018-02-22 00:00:00', 3, NULL),
+(17, '11602284', '0012614276', 'LESTARI UTAMI PUTRI', 'P', 'SUBANG', '2001-04-26', 'S PARMAN', '2018-02-22 00:00:00', 3, NULL),
+(18, '11602301', '0013158004', 'MALVIN GUNAWAN', 'L', 'JAKARTA', '2001-03-06', 'Sukasari', '2018-02-22 00:00:00', 3, NULL),
+(19, '11602314', '0011177222', 'MELINA', 'P', 'SUBANG', '2001-03-13', 'CISALAK', '2018-02-22 00:00:00', 3, NULL),
+(20, '11602337', '0020213303', 'MUCHLISH CHOERUDDIN', 'L', 'SUBANG', '2002-04-07', 'PADASUKA', '2018-02-22 00:00:00', 3, NULL),
+(21, '11602341', '0004823818', 'MUHAMAD ERI WAHYUDI', 'L', 'PURWOREJO', '2000-07-19', 'RAYA KALIJATI', '2018-02-22 00:00:00', 3, NULL),
+(22, '11602347', '0009456840', 'MUHAMAD ROHIMAT NURRIZQI', 'L', 'SUBANG', '2000-06-28', 'CIBITUNG', '2018-02-22 00:00:00', 3, NULL),
+(23, '11602355', '0026202154', 'MUHAMMAD IQBAL ', 'L', 'SUBANG', '2002-12-02', 'KELAPA', '2018-02-22 00:00:00', 3, NULL),
+(24, '11602370', '0017762928', 'NAUFAL HAFIZH HERIANDI', 'L', 'SUBANG', '2001-06-22', 'JL MARSINU', '2018-02-22 00:00:00', 3, NULL),
+(25, '11602418', '0004790617', 'PANDU MAULANA', 'L', 'SUBANG', '2000-07-01', 'CIHERANG', '2018-02-22 00:00:00', 3, NULL),
+(26, '11602444', '0009964576', 'R. Subangkit Ramadhan', 'L', 'Subang', '2000-11-27', 'RAYA PAGADEN', '2018-02-22 00:00:00', 3, NULL),
+(27, '11602460', '0014273522', 'RD. RAFLY FAUZI NUGRAHA', 'L', 'SUBANG', '2001-10-13', 'PALABUAN', '2018-02-22 00:00:00', 3, NULL),
+(29, '11602500', '0015163991', 'RINI APRIANI', 'P', 'SUBANG', '2001-04-09', 'PURI SUBANG ASRI BLOK I NO.8', '2018-02-22 00:00:00', 3, NULL),
+(30, '11602524', '0028464889', 'RIZAL PRAMUDYITA', 'L', 'SUBANG', '2001-09-18', 'MAYJEN MT.HARYONO', '2018-02-22 00:00:00', 3, NULL),
+(31, '11602553', '0001522690', 'SAKTI ALGERI DIPALMA', 'L', 'SUBANG', '2000-06-12', 'KP. SUKALAKSANA GG. PLAMBOYAN', '2018-02-22 00:00:00', 3, NULL),
+(32, '11602576', '0012950522', 'SHOLEH DINDA WARDANA', 'L', 'SUBANG', '2001-01-11', 'PARUNG HILIR', '2018-02-22 00:00:00', 3, NULL),
+(33, '11602583', '0012598921', 'SINTA DELIANI', 'P', 'SUBANG', '2001-12-16', 'ARIEF RAHMAN HAKIM', '2018-02-22 00:00:00', 3, NULL),
+(34, '11602607', '0011217558', 'SUCI REFIANTO', 'L', 'SUBANG', '2001-10-08', 'RAYA KALIJATI', '2018-02-22 00:00:00', 3, NULL),
+(35, '11602618', '0017455419', 'SYARIEL IKHWAN KURNIAWAN', 'L', 'SUBANG', '2001-12-26', 'BTN SUKAJAYA BLOK A.88', '2018-02-22 00:00:00', 3, NULL),
+(36, '11602633', '0001898052', 'TELA HANDAYANI', 'P', 'SUBANG', '2000-12-12', 'TANJUNGWANGI', '2018-02-22 00:00:00', 3, NULL),
+(37, '11602672', '0011355667', 'WAHYUDIN', 'L', 'SUBANG', '2001-01-20', 'BABAKAN CURUG', '2018-02-22 00:00:00', 3, NULL),
+(38, '11602710', '0010756996', 'YULI YULIA SARI', 'P', 'SUBANG', '2001-07-23', 'Tegalpanjang', '2018-02-22 00:00:00', 3, NULL),
+(39, '11602723', '0019692434', 'Zidan Lingga Mahesa', 'L', 'Subang', '2001-05-12', 'Griya CIpaku', '2018-02-22 00:00:00', 3, NULL),
+(40, '11601886', '0011013926', 'ADHITYA AGUNG SUWARDI', 'L', 'PADANG', '2001-03-03', 'PEJUANG', '2018-02-22 00:00:00', 4, NULL),
+(41, '11601890', '0011350057', 'ADITYA HERMANSYAH', 'L', 'TASIKMALAYA', '2001-03-12', 'SEDAYU TIMUR', '2018-02-22 00:00:00', 4, NULL),
+(42, '11601924', '0004039044', 'ALIFIA HAMZAH', 'L', 'SUBANG', '2000-11-14', 'RAYA BENDUNGAN', '2018-02-22 00:00:00', 4, NULL),
+(43, '11601932', '0012597573', 'ALYA ZENITA', 'P', 'SUBANG', '2001-05-27', 'TAMAN SARI I NO.32', '2018-02-22 00:00:00', 4, NULL),
+(44, '11601957', '0011339503', 'ANNISA AZZAHRA', 'P', 'SUBANG', '2001-10-11', 'SUKAMAJU', '2018-02-22 00:00:00', 4, NULL),
+(45, '11601991', '0010712785', 'Bima Akbar Gumilang', 'L', 'Subang', '2001-05-09', 'RAYA CINANGSI', '2018-02-22 00:00:00', 4, NULL),
+(46, '11602000', '0017394049', 'CECEP NANDANG SUDIARNO', 'L', 'INDRAMAYU', '2001-04-29', 'ALTERNATIF SUBANG CIKAMURANG', '2018-02-22 00:00:00', 4, NULL),
+(47, '11602017', '0009973204', 'DAFFA ALIEF DWIANANDA', 'L', 'SUBANG', '2000-12-01', 'RAYA CINANGSI', '2018-02-22 00:00:00', 4, NULL),
+(48, '11602041', '0019718965', 'DEVA DWI INSANI', 'P', 'SUBANG', '2001-10-16', 'TEGAL KALAPA', '2018-02-22 00:00:00', 4, NULL),
+(49, '11602086', '0012599012', 'Dinar Maharanisyah', 'P', 'Subang', '2001-09-01', 'PIERE TENDEAN', '2018-02-22 00:00:00', 4, NULL),
+(50, '11501376', '0004039416', 'DIVI PURNAMA', 'L', 'SUBANG', '2000-09-24', 'CIDADAP', '2018-02-22 00:00:00', 4, NULL),
+(51, '11602131', '0000488927', 'Evan Agustian Lukius', 'L', 'Subang', '2000-08-08', 'Ahmad Yani No.07', '2018-02-22 00:00:00', 4, NULL),
+(52, '11602144', '0005132532', 'Fajar Sidik Setiawan', 'L', 'Subang', '2000-11-04', 'sari sandi', '2018-02-22 00:00:00', 4, NULL),
+(53, '11602153', '0011338354', 'FAUZAN ARIA PERMANA', 'L', 'SUBANG', '2001-04-05', 'SUKAJAYA', '2018-02-22 00:00:00', 4, NULL),
+(54, '11602186', '0017707309', 'GERRY DWI BULIANTO', 'L', 'SUBANG', '2001-03-13', 'RAYA TAMBAKDAHAN', '2018-02-22 00:00:00', 4, NULL),
+(55, '11602207', '0010934391', 'HARI BUDIMAN', 'L', 'SUBANG', '2001-06-14', 'MEKARSARI', '2018-02-22 00:00:00', 4, NULL),
+(56, '11602213', '0013358581', 'Hendri Azka Zulfiqar', 'L', 'Subang', '2001-02-28', 'BTN Griya Cinangsi Asri Blok B 39', '2018-02-22 00:00:00', 4, NULL),
+(57, '11602232', '0015614402', 'ILHAM MAULANA HISOR', 'L', 'SUBANG', '2001-05-07', 'PALASARI', '2018-02-22 00:00:00', 4, NULL),
+(58, '11602248', '0011178153', 'IRFAN FAUZI RAHMAN', 'L', 'MAJALENGKA', '2001-05-02', 'KASOMALANG', '2018-02-22 00:00:00', 4, NULL),
+(59, '11602299', '0005734129', 'MAHARDHIKA GHAFARANA', 'L', 'SUBANG', '2000-09-30', 'LEBAKSIUH', '2018-02-22 00:00:00', 4, NULL),
+(60, '11602305', '0018757851', 'MATHILDA TIANA KAMAL', 'P', 'BANDUNG', '2001-02-06', 'NGENOL', '2018-02-22 00:00:00', 4, NULL),
+(61, '11602335', '9987816033', 'MOKHAMAD RISKI RAMADHAN', 'L', 'SUBANG', '1998-12-20', 'TONGKENG', '2018-02-22 00:00:00', 4, NULL),
+(62, '11602342', '0005131680', 'MUHAMAD FAHMI RIZKY RIZALDY', 'L', 'SUBANG', '2000-09-17', 'IRIAN', '2018-02-22 00:00:00', 4, NULL),
+(63, '11602354', '0013294012', 'MUHAMMAD FARHAN', 'L', 'SUBANG', '2001-05-08', 'KAMARUNG', '2018-02-22 00:00:00', 4, NULL),
+(64, '11602358', '0012956084', 'MUHAMMAD RAMDHAN', 'L', 'SUBANG', '2001-04-16', 'KH.MUCHIDIN', '2018-02-22 00:00:00', 4, NULL),
+(65, '11602413', '0006905916', 'Oki Luthfi Kurnia', 'L', 'Subang', '2000-10-19', 'CIMANGGU', '2018-02-22 00:00:00', 4, NULL),
+(66, '11602419', '0012613686', 'PANDU TEGUH WIBAWA', 'L', 'SUBANG', '2001-01-09', 'D KARTAWIGENDA NO.168', '2018-02-22 00:00:00', 4, NULL),
+(67, '11602455', '0014413163', 'Rangga Saka Pradana', 'L', 'Subang', '2001-07-31', 'Pramuka', '2018-02-22 00:00:00', 4, NULL),
+(68, '11602470', '0012598837', 'RENI SRI SULASTRI', 'P', 'SUBANG', '2002-06-12', 'A. NATA SUKARYA', '2018-02-22 00:00:00', 4, NULL),
+(70, '11602523', '0015251107', 'Rizal Ibnu Pratama', 'L', 'Subang', '2001-04-10', 'Sukarandeg', '2018-02-22 00:00:00', 4, NULL),
+(71, '11602527', '0019939684', 'Rizki Maulana', 'L', 'Subang', '2001-03-24', 'Rawabadak', '2018-02-22 00:00:00', 4, NULL),
+(72, '11602541', '0012892617', 'ROMEO GHASSANY FABIO', 'L', 'SUBANG', '2001-07-14', 'NUSA INDAH NO.3', '2018-02-22 00:00:00', 4, NULL),
+(73, '11602569', '0004790619', 'SENDI AGUSTIAN', 'L', 'SUBANG', '1999-08-03', 'RAYA CIJAMBE', '2018-02-22 00:00:00', 4, NULL),
+(74, '11602578', '0012596697', 'SIGIT WAHYU NUGRAHA', 'L', 'SUBANG', '2001-01-01', 'MT. HARYONO', '2018-02-22 00:00:00', 4, NULL),
+(75, '11602593', '0004038468', 'SITI JULFAH', 'P', 'JAKARTA', '2000-06-16', 'BUNUT', '2018-02-22 00:00:00', 4, NULL),
+(76, '11602611', '0010712274', 'SULTAN MAULANA AZIZ', 'L', 'PEMALANG', '2001-02-05', 'PERUM GRIYA CIPAKU', '2018-02-22 00:00:00', 4, NULL),
+(77, '11602613', '0017394067', 'SUSI SUNARTI', 'P', 'Indramayu', '2001-09-10', 'Raya subang', '2018-02-22 00:00:00', 4, NULL),
+(78, '11602620', '0010555206', 'Syifa Shalsabilla', 'P', 'Subang', '2001-06-21', 'Babakan Rawa', '2018-02-22 00:00:00', 4, NULL),
+(79, '11602666', '0019392483', 'VINA APRIYANTI', 'P', 'SUBANG', '2001-04-21', 'Jalan Letnan Ukin', '2018-02-22 00:00:00', 4, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bangunan`
+--
+ALTER TABLE `bangunan`
+  ADD PRIMARY KEY (`bangunan_id`);
+
+--
+-- Indexes for table `guru`
+--
+ALTER TABLE `guru`
+  ADD PRIMARY KEY (`guru_id`);
+
+--
+-- Indexes for table `kelas`
+--
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`kelas_id`);
+
+--
+-- Indexes for table `siswa`
+--
+ALTER TABLE `siswa`
+  ADD PRIMARY KEY (`siswa_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bangunan`
+--
+ALTER TABLE `bangunan`
+  MODIFY `bangunan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `guru`
+--
+ALTER TABLE `guru`
+  MODIFY `guru_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `kelas`
+--
+ALTER TABLE `kelas`
+  MODIFY `kelas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `siswa`
+--
+ALTER TABLE `siswa`
+  MODIFY `siswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
